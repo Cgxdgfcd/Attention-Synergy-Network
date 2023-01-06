@@ -1,0 +1,5 @@
+__pycache__
+dataset_isic18
+checkpoint
+checkpoint_best
+*.npy
