@@ -54,8 +54,8 @@ val_data = tf.image.adjust_gamma(val_data / 255., gamma=1.6)
 val_mask = np.expand_dims(val_mask, axis=-1)
 val_mask = val_mask / 255.
 
-batch_size = 2
-nb_epoch = 10   # 32
+batch_size = 16
+nb_epoch = 10
 steps_per_epoch = int(np.ceil(len(Tr_list)/batch_size))
 
 
@@ -81,7 +81,7 @@ model.compile(optimizer=Adam(learning_rate=1e-4, decay=1e-7), loss=WBEC(), metri
 
 mcp_save = ModelCheckpoint('./checkpoint/weights.hdf5', save_weights_only=True)
 mcp_save_best = ModelCheckpoint('./checkpoint_best/weights_best.hdf5', verbose=1, save_best_only=True, save_weights_only=True,
-                                mode='min', initial_value_threshold=0.23690)
+                                mode='min')# 0.23690
 
 history = model.fit(x=generator(Tr_list, Tr_ms_list),
                     epochs=nb_epoch,
